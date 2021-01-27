@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thread.dao.ProductDao">
+	<!-- 获取产品
+	/*for update 数据库的悲观锁会降低性能，在某个是否操作表中某条数据的时候，直接锁住这条数据，从而导致其他事物统统排队*/
+	-->
+	<select id="getProduct" parameterType="long" resultType="product">
+		select id, product_name as productName,
+		stock, price, version, note from t_product
+		where id=#{id} for update
+	</select>
+
+	<!-- 减库存 -->
+	<update id="decreaseProduct">
+		update t_product set stock = stock - #{quantity},
+		version = version +1
+		where id = #{id}
+	</update>
+</mapper>
