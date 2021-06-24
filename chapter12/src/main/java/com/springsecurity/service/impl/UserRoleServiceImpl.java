@@ -28,11 +28,31 @@ public class UserRoleServiceImpl implements UserRoleService {
 		return userDao.getUser(userName);
 	}
 
+
+
 	@Override
 //	@Cacheable(value = "redisCache", key = "'redis_user_role_'+#userName")
 	@Transactional
 	public List<DatabaseRole> findRolesByUserName(String userName) {
 		return roleDao.findRolesByUserName(userName);
+	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public boolean addUser(DatabaseUser user) {
+		boolean result = false;
+//		try {
+//			result=userDao.addUser(user);
+//			String a=null;
+//			a.indexOf(5);
+//		}catch (Exception e){
+//			e.printStackTrace();
+//		}
+		result=userDao.addUser(user);
+		String a=null;
+		a.indexOf(5);
+
+		return result;
 	}
 
 }

@@ -11,4 +11,6 @@ public interface UserRoleService {
 	public DatabaseUser getUserByName(String userName);
 
 	public List<DatabaseRole> findRolesByUserName(String userName);
+
+	public boolean addUser(DatabaseUser user);
 }

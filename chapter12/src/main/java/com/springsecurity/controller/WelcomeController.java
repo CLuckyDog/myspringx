@@ -67,5 +67,11 @@ public class WelcomeController {
 		map.put("describe", describe);
 		return map;
 	}
+
+	@GetMapping("/user/adduser")
+	@ResponseBody
+	public boolean addUser(DatabaseUser user) {
+		return userRoleService.addUser(user);
+	}
 	
 }

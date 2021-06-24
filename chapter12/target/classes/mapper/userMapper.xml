@@ -6,4 +6,8 @@
   <select id="getUser" parameterType="string"  resultType="dbuser">
     SELECT id, user_name as userName, pwd, available, note FROM t_user where user_name = #{userName}
   </select>
+
+  <insert id="addUser" parameterType="dbuser" >
+        INSERT INTO`t_user` (`user_name`, `note`) VALUES (#{userName}, #{note})
+  </insert>
 </mapper>
